@@ -1,0 +1,82 @@
+<div class="d-flex align-items-start mt-5">
+  <div
+    class="nav flex-column me-3"
+    id="v-pills-tab"
+    role="tablist"
+    aria-orientation="vertical"
+  >
+    <div class="nav-custom-header">
+      <h4>
+        <small>Scenario Selected</small><br />
+        High CPA
+      </h4>
+    </div>
+    <div *ngFor="let item of optimization">
+      <div
+        class="nav-link custom-nav-link mx-3"
+        [class.selected]="item._id === idSelected"
+        id="v-pills-home-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#v-pills-home"
+        type="div"
+        role="tab"
+        aria-controls="v-pills-home"
+        aria-selected="true"
+        (click)="setCurrentTab(item)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="v-pills-tabContent">
+    <div
+      class="tab-pane show panel-body"
+      style="display: block"
+      id="v-pills-home"
+      role="tabpanel"
+      aria-labelledby="v-pills-home-tab"
+    >
+      <div class="instructions">
+        <h4 class="panel-title">Instructions</h4>
+        <div [innerHTML]="currentTab?.description"></div>
+      </div>
+      <div class="optimmizations">
+        <h4 class="panel-title">Optimmizations</h4>
+        <div class="opt">
+          <ul class="list-group list-group">
+            <li
+              class="
+                list-group-item
+                d-flex
+                p-3
+                justify-content-between
+                align-items-start
+              "
+              style="cursor: pointer"
+              *ngFor="let action of actions || []"
+            >
+              <div class="ms-2 me-auto">
+                <div
+                  class="fw-bold"
+                  (click)="setSelectOpt(action._id)"
+                  [class.selectedOpt]="action._id === selectedOptimization"
+                >
+                  <i
+                    class="{{
+                      selectedOptimization === action._id
+                        ? 'fas fa-check-square'
+                        : 'far fa-square'
+                    }} mr-3"
+                  ></i
+                  ><span> {{ action.name }}</span>
+                </div>
+                <!-- Cras justo odio -->
+              </div>
+              <i class="fas fa-chevron-down"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
