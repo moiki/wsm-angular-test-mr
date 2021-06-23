@@ -71,8 +71,20 @@
                   ><span> {{ action.name }}</span>
                 </div>
                 <!-- Cras justo odio -->
+                <div
+                  class="optimization-description"
+                  *ngIf="openOpt === action._id"
+                  [innerHTML]="action.actionVariants.shift().description"
+                ></div>
               </div>
-              <i class="fas fa-chevron-down"></i>
+              <i
+                class="{{
+                  openOpt === action._id
+                    ? 'fas fa-chevron-up'
+                    : 'fas fa-chevron-down'
+                }} mr-3"
+                (click)="setOpenOpt(action._id)"
+              ></i>
             </li>
           </ul>
         </div>
